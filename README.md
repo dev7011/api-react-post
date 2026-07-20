@@ -1,24 +1,13 @@
-# README
+♦️FONT-AWESOME-SASS INTEGRIEREN IN RAILS 7♦️
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+    gem "font-awesome-sass", "~> 6.5.1"
+    bundle install
 
-Things you may want to cover:
 
-* Ruby version
+    👉  Datei app/assets/stylesheets/application.css in  app/assets/stylesheets/application.css.scss umbenennen 
+        👉 und folgende Zeile hinzufügen:
+            *= require_tree .
+            *= require_self
+            */
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+            @import "font-awesome";
