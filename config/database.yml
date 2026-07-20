@@ -1,0 +1,28 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS", 5) %>
+
+development:
+  <<: *default
+  host: localhost
+  port: 5432
+  database: development
+  username: contur
+  password: contura_123
+
+test:
+  <<: *default
+  host: localhost
+  port: 5432
+  database: test
+  username: contur
+  password: contura_123
+
+production:
+  <<: *default
+  host: <%= ENV.fetch("DB_HOST", "127.0.0.1") %>
+  port: <%= ENV.fetch("DB_PORT", 5432) %>
+  database: <%= ENV.fetch("DB_NAME", "rails_ecommerce_production") %>
+  username: <%= ENV.fetch("DB_USERNAME", "contur") %>
+  password: <%= ENV.fetch("DB_PASSWORD", "contura_123") %>
