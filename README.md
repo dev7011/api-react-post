@@ -9,3 +9,12 @@
             *= require_self
             */
             @import "font-awesome";
+
+
+🏀 FIX bei Fehlern beim Starten von Rails,
+        
+        rm -rf tmp/cache
+        rm -rf public/assets
+        bin/rails assets:clobber
+        bin/rails tailwindcss:build 
+        bin/dev ♦️ watch tailwindcss-rails
