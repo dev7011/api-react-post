@@ -3,5 +3,7 @@ import "@hotwired/turbo-rails"
 import "./controllers"
 import dayjs from "dayjs"
 
+import "./react_app"
+
 // Example usage: log current time using dayjs
 console.log("dayjs loaded:", dayjs().format())
