@@ -1,28 +1,41 @@
 import {useEffect, useState} from "react"
+import {API_BASE_URL} from "../../constants.js";
 
 function PostsList() {
-  const [postsList] = useState([
-    {
-      id: 1,
-      title: "title",
-      body: "test test test test"
-    }
-  ])
+  const [posts, setPosts] = useState([])
 
   useEffect(() => {
-    // Fetch posts from API and update state
-    alert("112")
+    async function fetchPosts() {
+      try {
+        const response = await fetch(`${API_BASE_URL}/api/v1/posts`);
+        if (response.ok) {
+          const data = await response.json();
+          console.log("Fetched posts:", data);
+          setPosts(data);
+
+        } else {
+          throw response;
+        }
+
+      } catch (error) {
+        console.error("Error fetching posts:", error);
+      }
+    }
+
+    fetchPosts();
   }, []);
 
   return (
     <>
       <h1>Posts List</h1>
       <p>List of posts will be displayed here.</p>
-      { postsList.map((post) => {
-        <div key={post.id} className={"post-item inline-flex"}>
-          <span> {`${post.title} body: ${post.body}`}</span>
-        </div>
-      })
+
+      { posts.map((post) => (
+          <div key={post.id} className={"post-item"}>
+            <h2> {post.id}. {post.title}</h2>
+            <p>{post.body}</p>
+          </div>
+        ))
       }
     </>
   )
