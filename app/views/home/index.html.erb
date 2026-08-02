@@ -1,5 +1,9 @@
 <div class="w-full rounded-2xl bg-slate-100 p-10 shadow-lg">
-  <h1 class="text-4xl font-bold text-blue-600">
+  <h1 class="text-4xl font-bold text-blue-700">
+    Rails mit Tailwindcss
+  </h1>
+
+  <h1 class="text-4xl font-bold text-fuchsia-500">
     Rails mit Tailwindcss
   </h1>
 
@@ -10,4 +14,35 @@
   <button class="mt-6 rounded-lg bg-red-600 px-5 py-2 font-semibold text-white hover:bg-red-700">
     Login
   </button>
+
+  <button class="mt-6 rounded-lg bg-cyan-600 px-5 py-2 font-semibold text-white hover:bg-red-700"
+    data-controller="hello"
+    data-action="click->hello#greet"
+  >
+    Hello Stimulus
+  </button>
+
+  <div id="show-fix-content" class="mt-2 text-fuchsia-600">
+    FIX: Stimulus, wenn es nicht funktioniert
+    <p> assets/builds (ausser .keep) </p>
+    <p> run rails stimulus:install</p>
+  </div>
+
+  <%= button_to "go to product",
+                root_path,
+                method: :get,
+                type: "button",
+                class: "mt-6 rounded-lg bg-red-600 px-5 py-2 font-semibold text-white hover:bg-red-700" %>
+
+
+
+  <h1 class="text-4xl font-bold text-blue-500">
+    Rails mit Tailwindcss
+  </h1>
+
+  <div class="mt-6 flex w-full items-center justify-between rounded-lg bg-green-600 p-3 text-white">
+    <div class="rounded bg-red-600 px-3 py-1">01</div>
+    <div class="rounded bg-amber-400 px-3 py-1 text-slate-900">02</div>
+    <div class="rounded bg-amber-200 px-3 py-1 text-slate-900">03</div>
+  </div>
 </div>

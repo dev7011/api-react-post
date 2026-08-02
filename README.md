@@ -13,8 +13,12 @@
 
 🏀 FIX bei Fehlern beim Starten von Rails,
         
+        find app/assets/builds -mindepth 1 ! -name '.keep' -exec rm -rf {} +
+
         rm -rf tmp/cache
         rm -rf public/assets
         bin/rails assets:clobber
         bin/rails tailwindcss:build 
-        bin/dev ♦️ watch tailwindcss-rails
+        ♦️ watch tailwindcss-rails
+        bin/dev   
+       
