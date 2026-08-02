@@ -1,18 +1,20 @@
 import { useState } from 'react'
 import './App.css'
 import PostPage from './features/post/PostPage'
+import {BrowserRouter,
+  Route,
+  Routes
+} from "react-router-dom";
+import NavBar from "./components/NavBar.jsx";
 
 function App() {
-
   return (
-    <div className={"App-container"}>
-      <h1>WELCOME TO REACT </h1>
-      <p>npm create vite@latest"</p>
-        <p>npm run dev"</p>
+    <BrowserRouter>
+      <div className={"App-container"}>
+        <PostPage />
 
-      <PostPage />
-
-    </div>
+      </div>
+    </BrowserRouter>
   )
 }
 

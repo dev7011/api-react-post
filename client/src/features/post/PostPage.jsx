@@ -1,8 +1,10 @@
-import PostsList from "./PostsList.jsx";
+import PostsList from "./PostsList"
+import NavBar from "../../components/NavBar"
 
 function PostPage() {
   return (
     <>
+      <NavBar />
       <PostsList />
     </>
   )
