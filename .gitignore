@@ -43,3 +43,4 @@ node_modules
 /client/public/icons.svg
 /client/src/assets/hero.png
 /client/src/assets/react.svg
+/client/.env.development
