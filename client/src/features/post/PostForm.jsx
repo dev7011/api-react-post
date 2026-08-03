@@ -1,14 +1,10 @@
 import {useEffect, useState} from "react";
 
-function PostForm({ mode = "create", title: initialTitle = "", body: initialBody = "", onSubmit, onCancel }) {
+function PostForm({ postId = "" , title: initialTitle = "", body: initialBody = "", onSubmit, onCancel }) {
 
   const [title, setTitle] = useState(initialTitle)
   const [body, setBody] = useState(initialBody)
-  const isEdit = mode === "edit";
-
-  useEffect(() => {
-
-  }, []);
+  const isCreate = postId === "";
 
   function handleOnSubmit(event) {
     event.preventDefault()
@@ -24,7 +20,7 @@ function PostForm({ mode = "create", title: initialTitle = "", body: initialBody
   return (
     <>
       <form onSubmit={handleOnSubmit}>
-        <h2 className={"row-component"}> {isEdit ? "Editing Post" : "Add new Post"} </h2>
+        <h2 className={"row-component"}> {isCreate ? "Add new Post" : "Editing Post"} </h2>
         <div className={"row-component"}>
           <label>Title</label>
           <input

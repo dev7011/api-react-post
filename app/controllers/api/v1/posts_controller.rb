@@ -1,9 +1,15 @@
 class Api::V1::PostsController < ApplicationController
-  skip_forgery_protection
+  skip_before_action :verify_authenticity_token
+  before_action :setPost, only: [:edit, :update]
+
   def index
     @posts = Post.all.order("created_at DESC")
 
     render json: @posts
+  end
+
+  def edit
+    render json: @post, status: :ok
   end
 
   def create
@@ -16,8 +22,23 @@ class Api::V1::PostsController < ApplicationController
     end
   end
 
+  def update
+    if @post.update(post_params)
+      render json: @post, status: :ok
+    else
+      render json: { errors: @post.errors.full_messages }, status: :unprocessable_entity
+    end
+  end
+
   private
+
+  def setPost
+    @post = Post.find(params[:id])
+  end
+
   def post_params
-    params.require(:post).permit!
+    return params.require(:post).permit(:title, :body, :images_data) if params[:post].present?
+
+    params.permit(:title, :body, :images_data)
   end
 end
