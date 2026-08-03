@@ -1,15 +1,15 @@
-import PostsList from "../features/post/PostsList"
-import Create from "../features/post/Create"
+import PostsList from "../features/post/PostsList.jsx"
+import PostNew from "../features/post/PostNew.jsx"
 
 import {
   Routes,
   Route } from "react-router-dom"
 function PostRoutes(){
   return(
-   <Routes>
-     <Route path={"/post/new"} element={<Create />} />
-     <Route path={"/posts"} element={<PostsList />} />
-   </Routes>
+    <Routes>
+      <Route path="/posts" element={<PostsList />} />
+      <Route path="/post/new" element={<PostNew />} />
+    </Routes>
   )
 }
 

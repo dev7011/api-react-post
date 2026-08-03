@@ -1,16 +1,11 @@
-import {Routes, Route }from "react-router-dom";
-import PostsList from "../features/post/PostsList";
-import PostDetail from "../features/post/PostDetail";
-import { useParams,
-  Link,
-} from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 function NavBar(){
   return (
     <>
-      {<Link to={"/post/new"}>add post</Link>}
+      {<NavLink to={"/post/new"}>add post</NavLink>}
       {" | "}
-      {<Link to={"/posts"}>post list</Link>}
+      {<NavLink to={"/posts"}>post list</NavLink>}
     </>
   )
 }
