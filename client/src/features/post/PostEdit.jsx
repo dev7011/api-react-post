@@ -1,28 +1,23 @@
 import {useNavigate} from "react-router";
 import PostForm from "./PostForm.jsx";
 import { useParams } from "react-router-dom";
-import usePost, { getPostUrl } from "../../services/usePost.js";
+import { useEffect, useState } from "react";
+import { updatePost, fetchPost } from "../../services/postService.js";
 
 function PostEdit() {
   const navigate = useNavigate()
   const { id } = useParams()
-  const post = usePost(id)
+  const [post, setPost] = useState(null)
 
-  const updatePost = async (postData) => {
+  useEffect(() => {
+    fetchPost(id)
+      .then((data) => setPost(data))
+      .catch(console.error)
+  }, [id])
+
+  const handleUpdatePost = async (postData) => {
     try {
-      const url = getPostUrl(id)
-
-      const response = await fetch(url, {
-        headers: {"Content-Type": "application/json"},
-        method: "PUT",
-        body: JSON.stringify(postData)
-      })
-
-      if (!response.ok) {
-        console.error("Post could not be updated")
-        return
-      }
-
+      await updatePost(postData, id)
       navigate("/posts")
     } catch (error) {
       console.error("Error updating post:", error)
@@ -37,7 +32,7 @@ function PostEdit() {
         postId={post.id}
         title={post.title}
         body={post.body}
-        onSubmit={updatePost}
+        onSubmit={handleUpdatePost}
         onCancel={() => navigate("/posts")}
       />
     </>

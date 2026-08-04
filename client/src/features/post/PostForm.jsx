@@ -32,8 +32,8 @@ function PostForm({ postId = "" , title: initialTitle = "", body: initialBody = 
 
         <div className={"row-component"} >
           <label>Body</label>
-          <input
-            className={"posts-title"}
+          <textarea
+            className={"posts-body"}
             value={body}
             onChange={(e) => { setBody(e.target.value) }}
           />

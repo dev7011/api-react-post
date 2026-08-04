@@ -1,23 +1,14 @@
-import {API_POST_URL} from "../../constants.js";
 import {useNavigate} from "react-router";
 import PostForm from "./PostForm.jsx";
+import {createPost} from "../../services/postService.js";
 
 function PostNew() {
   const navigate = useNavigate()
 
-  const savePost = async (postData) => {
+  const handleCreatePost = async (postData) => {
+
     try {
-      const response = await fetch(API_POST_URL, {
-        headers: {"Content-Type": "application/json"},
-        method: "POST",
-        body: JSON.stringify(postData)
-      })
-
-      if (!response.ok) {
-        console.error("Post could not be created")
-        return
-      }
-
+      await createPost(postData)
       navigate("/posts")
     } catch (error) {
       console.error("Error creating post:", error)
@@ -27,7 +18,7 @@ function PostNew() {
   return (
     <>
       <PostForm
-        onSubmit={savePost}
+        onSubmit={handleCreatePost}
         onCancel={() => navigate("/posts")}
       />
     </>
