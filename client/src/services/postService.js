@@ -1,28 +1,31 @@
-import {API_BASE_URL, API_POST_URL} from "../constants.js";
+import {API_POST_URL} from "../constants.js";
 
 function getUrl(id, action){
   return action ? `${API_POST_URL}/${id}/${action}`: `${API_POST_URL}/${id}`
 }
+
 async function fetchAllPosts() {
-    const response = await fetch(API_POST_URL);
+  const response = await fetch(API_POST_URL);
 
-    if (!response.ok) {
-      throw new error("failed Fetched posts:");
-    }
+  if (!response.ok) {
+    throw new Error("Failed to fetch posts");
+  }
 
-    return response.json();
+  return response.json();
 }
 
-async function updatePost(postData,  id) {
-  const response = await fetch( getUrl(id), {
+async function updatePost(postData, id) {
+  const response = await fetch(getUrl(id), {
     headers: {"Content-Type": "application/json"},
     method: "PUT",
     body: JSON.stringify(postData)
   })
 
   if (!response.ok) {
-    throw new Error("failed update")
+    throw new Error("Failed to update post")
   }
+
+  return response.json()
 }
 
 async function createPost(dataPost){
@@ -33,23 +36,39 @@ async function createPost(dataPost){
   })
 
   if (!response.ok) {
-    throw new Error("failed create post")
+    throw new Error("Failed to create post")
   }
 
   return response.json()
 }
+
 async function fetchPost(id) {
   const response = await fetch(getUrl(id, "edit"))
+
   if (!response.ok) {
-    throw new Error("failed to fetch post")
+    throw new Error("Failed to fetch post")
   }
 
   return response.json()
 }
 
+async function deletePost(id) {
+  const response = await fetch(getUrl(id), {
+    headers: {"Content-Type": "application/json"},
+    method: "DELETE"
+  })
+
+  if (!response.ok) {
+    throw new Error("Failed to delete post")
+  }
+
+  return response.json()
+}
 
 export {
   fetchAllPosts,
   createPost,
   updatePost,
-  fetchPost}
+  deletePost,
+  fetchPost
+}

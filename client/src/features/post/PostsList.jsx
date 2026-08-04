@@ -1,12 +1,13 @@
 import {useEffect, useState} from "react"
 import {NavLink} from "react-router-dom";
-import {fetchAllPosts} from "../../services/postService.js";
+import {fetchAllPosts, deletePost} from "../../services/postService.js";
+
 
 function PostsList() {
   const [posts, setPosts] = useState([])
 
   useEffect(() => {
-    async function loadPosts() {
+    async function loadAllPosts() {
       try {
         const postsData = await fetchAllPosts();
         setPosts(postsData);
@@ -15,9 +16,22 @@ function PostsList() {
       }
     }
 
-    loadPosts();
+    loadAllPosts();
 
   }, []);
+
+  const handleDeletePost = async (postId) => {
+    if (!window.confirm("Are you sure you want to delete this post?")) {
+      return;
+    }
+
+    try {
+      await deletePost(postId)
+      setPosts((prev) => prev.filter((post) => post.id !== postId))
+    } catch (error) {
+      console.error("Error deleting post:", error)
+    }
+  }
 
   return (
     <>
@@ -30,17 +44,22 @@ function PostsList() {
           <p>{post.body}</p>
 
           <div className={"footer-actions row-component"}>
-            <NavLink
-              className={"btn btn-primary"}
-              to={`/post/edit/${post.id}`}>Edit
-            </NavLink>
-            <NavLink
+            <button className={"btn btn-primary"}>
+              <NavLink className={"btn btn-primary"}
+                to={`/post/edit/${post.id}`}
+              >
+                Edit
+              </NavLink>
+            </button>
+
+            <button
               className={"btn btn-danger"}
-              to={`/post/delete/${post.id}`}>Delete
-            </NavLink>
+              onClick={() => handleDeletePost(post.id)}
+            >
+              Delete
+            </button>
           </div>
         </div>
-
         ))
       }
     </>

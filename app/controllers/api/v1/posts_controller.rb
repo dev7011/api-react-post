@@ -1,11 +1,15 @@
 class Api::V1::PostsController < ApplicationController
   skip_before_action :verify_authenticity_token
-  before_action :setPost, only: [:edit, :update]
+  before_action :setPost, only: [:edit, :update, :destroy]
 
   def index
     @posts = Post.all.order("created_at DESC")
 
     render json: @posts
+  end
+
+  def show
+    render json: @post, status: :ok
   end
 
   def edit
@@ -28,6 +32,12 @@ class Api::V1::PostsController < ApplicationController
     else
       render json: { errors: @post.errors.full_messages }, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    @post.destroy
+
+    render json: { response: "Successfully deleted" }, status: :ok
   end
 
   private

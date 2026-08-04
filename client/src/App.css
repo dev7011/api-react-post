@@ -23,7 +23,7 @@ a {
   display: flex;
   margin: 5px 0;
   padding: 5px;
-  gap: 10px;
+  gap: 2px;
 }
 
 .mt-0 {
@@ -48,9 +48,12 @@ a {
 
 .btn {
   display: inline-flex;
-  padding: 5px 15px;
+  padding: 2px 15px;
   border-radius: 5px;
   border: none;
+
+  text-align: center;
+  align-items: center;
   cursor: pointer;
   color: white;
   font-weight: bold;
