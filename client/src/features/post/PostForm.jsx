@@ -1,32 +1,45 @@
 import {useEffect, useState} from "react";
 
-function PostForm({ postId = "" , title: initialTitle = "", body: initialBody = "", onSubmit, onCancel }) {
+function PostForm({ post , headerText, onSubmit, onCancel }) {
 
-  const [title, setTitle] = useState(initialTitle)
-  const [body, setBody] = useState(initialBody)
-  const isCreate = postId === "";
+  const [formData, setFormData] = useState(
+    post || {
+      title: "",
+      body: "",
+    }
+  );
+
+  const [loading, setLoading] = useState(null)
+  const [error, setError] = useState(null)
 
   function handleOnSubmit(event) {
     event.preventDefault()
-    onSubmit?.({ title, body })
+
+    onSubmit( formData )
   }
 
   function handleOnCancel() {
-    setTitle(initialTitle)
-    setBody(initialBody)
-    onCancel?.()
+    setFormData({
+      title: "",
+      body: "",
+    });
+    onCancel()
   }
 
   return (
     <>
       <form onSubmit={handleOnSubmit}>
-        <h2 className={"row-component"}> {isCreate ? "Add new Post" : "Editing Post"} </h2>
-        <div className={"row-component"}>
+        <h2 className={"row-component"}> {headerText} </h2>
+        <div className={"row-component bg-red-700"}>
           <label>Title</label>
           <input
             className={"posts-title"}
-            value={title}
-            onChange={(e) => { setTitle(e.target.value) }}
+            value={formData.title}
+            onChange={(e) => {
+              setFormData({
+                ...formData,
+                title: e.target.value})
+            }}
           />
         </div>
 
@@ -34,8 +47,12 @@ function PostForm({ postId = "" , title: initialTitle = "", body: initialBody = 
           <label>Body</label>
           <textarea
             className={"posts-body"}
-            value={body}
-            onChange={(e) => { setBody(e.target.value) }}
+            value={formData.body}
+            onChange={(e) => {
+              setFormData({
+                ...formData,
+                body: e.target.value})
+            }}
           />
         </div>
 

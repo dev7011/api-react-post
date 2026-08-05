@@ -6,7 +6,6 @@ function PostNew() {
   const navigate = useNavigate()
 
   const handleCreatePost = async (postData) => {
-
     try {
       await createPost(postData)
       navigate("/posts")
@@ -18,6 +17,7 @@ function PostNew() {
   return (
     <>
       <PostForm
+        headerText={"Add new post"}
         onSubmit={handleCreatePost}
         onCancel={() => navigate("/posts")}
       />

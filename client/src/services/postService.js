@@ -8,7 +8,7 @@ async function fetchAllPosts() {
   const response = await fetch(API_POST_URL);
 
   if (!response.ok) {
-    throw new Error("Failed to fetch posts");
+    throw new Error("Failed to fetch all posts");
   }
 
   return response.json();

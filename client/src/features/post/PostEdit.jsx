@@ -24,14 +24,13 @@ function PostEdit() {
     }
   }
 
-  if (!post) return null
+  if (!post) return <h2>Loading...</h2>
 
   return (
     <>
       <PostForm
-        postId={post.id}
-        title={post.title}
-        body={post.body}
+        headerText={"Edit post"}
+        post={post}
         onSubmit={handleUpdatePost}
         onCancel={() => navigate("/posts")}
       />
