@@ -5,6 +5,13 @@ import PostNew from "./features/post/PostNew.jsx";
 import PostRoutes from "./components/PostRoutes.jsx";
 import "./App.css"
 
+function sum(a, b){
+  return  a+b
+}
+export function total(a, b, c){
+  return sum(sum(a, b), c)
+}
+
 function App() {
   return (
     <BrowserRouter>
