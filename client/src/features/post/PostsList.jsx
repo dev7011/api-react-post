@@ -7,16 +7,14 @@ function PostsList() {
   const [posts, setPosts] = useState([])
 
   useEffect(() => {
-    async function loadAllPosts() {
+    (async function loadPosts() {
       try {
         const postsData = await fetchAllPosts();
         setPosts(postsData);
       } catch (error) {
         console.error("Error fetching posts:", error);
       }
-    }
-    loadAllPosts();
-
+    })() // IIE
   }, []);
 
   const handleDeletePost = async (postId) => {
