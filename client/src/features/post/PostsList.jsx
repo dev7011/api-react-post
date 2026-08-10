@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react"
-import {NavLink} from "react-router-dom";
 import {fetchAllPosts, deletePost} from "../../services/postService.js";
+import PostItem from "./PostItem.jsx";
 
 
 function PostsList() {
@@ -15,7 +15,6 @@ function PostsList() {
         console.error("Error fetching posts:", error);
       }
     }
-
     loadAllPosts();
 
   }, []);
@@ -28,6 +27,7 @@ function PostsList() {
     try {
       await deletePost(postId)
       setPosts((prev) => prev.filter((post) => post.id !== postId))
+
     } catch (error) {
       console.error("Error deleting post:", error)
     }
@@ -39,29 +39,12 @@ function PostsList() {
       <p>List of posts will be displayed here.</p>
 
       { posts.map((post) => (
-        <div key={post.id} className={"post-item"}>
-          <h2> {post.id}. {post.title}</h2>
-          <p>{post.body}</p>
-
-          <div className={"footer-actions row-component"}>
-            <button className={"btn btn-primary"}>
-              <NavLink className={"btn btn-primary"}
-                to={`/post/edit/${post.id}`}
-              >
-                Edit
-              </NavLink>
-            </button>
-
-            <button
-              className={"btn btn-danger"}
-              onClick={() => handleDeletePost(post.id)}
-            >
-              Delete
-            </button>
-          </div>
-        </div>
-        ))
-      }
+        <PostItem
+          key={post.id}
+          post= { post }
+          eventDeletePost = {handleDeletePost} />
+        )
+      )}
     </>
   )
 }

@@ -3,9 +3,13 @@ import { NavLink } from "react-router-dom";
 function NavBar(){
   return (
     <>
-      {<NavLink to={"/post/new"}>add post</NavLink>}
-      {" | "}
-      {<NavLink to={"/posts"}>post list</NavLink>}
+      {<NavLink
+        className={"btn btn-primary"}
+        to={"/posts/new"}>add post</NavLink>}
+
+      {<NavLink
+        className={"btn btn-primary"}
+        to={"/posts"}>post list</NavLink>}
     </>
   )
 }
