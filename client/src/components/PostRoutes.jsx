@@ -11,7 +11,7 @@ import {
 function PostRoutes(){
   return(
     <Routes>
-      <Route path="/posts" element={<PostsList />} />
+      <Route path="/" element={<PostsList />} />
       <Route path="/posts/new" element={<PostNew />} />
       <Route path="/posts/edit/:id" element={<PostEdit />} />
       <Route path="/posts/show/:id" element={<PostDetail />} />

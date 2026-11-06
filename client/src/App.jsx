@@ -9,10 +9,8 @@ import "./App.css"
 function App() {
   return (
     <BrowserRouter>
-      <div className={"App-container"}>
-        <NavBar />
-        <PostRoutes />
-      </div>
+      <NavBar />
+      <PostRoutes />
     </BrowserRouter>
   )
 }

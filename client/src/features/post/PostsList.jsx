@@ -32,10 +32,7 @@ function PostsList() {
   }
 
   return (
-    <>
-      <h1>Posts List</h1>
-      <p>List of posts will be displayed here.</p>
-
+    <div className={"mt-5"}>
       { posts.map((post) => (
         <PostItem
           key={post.id}
@@ -43,7 +40,7 @@ function PostsList() {
           eventDeletePost = {handleDeletePost} />
         )
       )}
-    </>
+    </div>
   )
 }
 

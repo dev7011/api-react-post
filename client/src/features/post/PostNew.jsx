@@ -8,7 +8,7 @@ function PostNew() {
   const handleCreatePost = async (postData) => {
     try {
       await createPost(postData)
-      navigate("/posts")
+      navigate("/")
     } catch (error) {
       console.error("Error creating post:", error)
     }
@@ -19,7 +19,7 @@ function PostNew() {
       <PostForm
         headerText={"Add new post"}
         onSubmit={handleCreatePost}
-        onCancel={() => navigate("/posts")}
+        onCancel={() => navigate("/")}
       />
     </>
   )

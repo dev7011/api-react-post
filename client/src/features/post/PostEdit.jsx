@@ -18,7 +18,7 @@ function PostEdit() {
   const handleUpdatePost = async (postData) => {
     try {
       await updatePost(postData, id)
-      navigate("/posts")
+      navigate("/")
     } catch (error) {
       console.error("Error updating post:", error)
     }
@@ -32,7 +32,7 @@ function PostEdit() {
         headerText={"Edit post"}
         post={post}
         onSubmit={handleUpdatePost}
-        onCancel={() => navigate("/posts")}
+        onCancel={() => navigate("/")}
       />
     </>
   )

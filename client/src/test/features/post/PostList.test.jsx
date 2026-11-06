@@ -2,7 +2,7 @@ import React from "react";
 import { MemoryRouter } from "react-router-dom";
 import { render, screen, waitFor } from "@testing-library/react";
 import { afterEach, describe, expect, test, vi } from "vitest";
-import PostsList from "./PostsList.jsx";
+import PostsList from "../../../features/post/PostsList.jsx";
 
 afterEach(() => {
   vi.unstubAllGlobals();
